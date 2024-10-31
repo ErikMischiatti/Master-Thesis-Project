@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="robot_ip"               default="franka"/>
+  <arg name="load_gripper"           default="true" />
+  <arg name="use_gripper_gui"        default="true" />
+  <arg name="load_franka_control"    default="true" />
+  <arg name="arm_id"                 default="fr3"/>
+
+  <!-- Bringup franka_interactive_bringup.launch -->
+  <group if="$(arg load_franka_control)">
+    <include file="$(find franka_interactive_controllers)/launch/franka_interactive_bringup.launch" >
+      <arg name="robot_ip" value="$(arg robot_ip)" />
+      <arg name="load_gripper" value="$(arg load_gripper)" />
+      <arg name="use_gripper_gui" value="$(arg use_gripper_gui)" />
+      <arg name="bringup_rviz" value="true" />
+      <arg name="arm_id" value="$(arg arm_id)" />
+    </include>
+  </group>
+  
+  <!-- Load desired controller-->  
+  <node  name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_gravity_compensation_controller"/>
+  <rosparam ns="joint_gravity_compensation_controller" command="load" file="$(find franka_interactive_controllers)/config/impedance_control_additional_params.yaml"/>
+
+</launch>
