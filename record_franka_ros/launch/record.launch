@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<launch>
+  <!-- Start Franka Gravity Compensation -->
+  <include file="$(find franka_interactive_controllers)/launch/joint_gravity_compensation_controller.launch">
+    <arg name="robot_ip" value="franka"/>
+    <arg name="load_franka_control" value="true"/>
+    <arg name="load_gripper" value="true"/>
+    <arg name="use_gripper_gui" value="true"/>
+    <arg name="arm_id" value="panda"/>
+  </include>
+
+  <!-- <arg name="topics"  	    
+  default="/franka_state_controller/joint_states
+      /franka_state_controller/franka_states
+      /franka_gripper/joint_states
+      /franka_state_controller/F_ext
+      /franka_state_controller/F_ext_base
+      /ft_sensor/ft_compensated
+      /ft_sensor/ft_compensated_base
+      /ft_sensor/ft_raw
+      /ft_sensor/ft_zeroed
+      /franka_state_controller/O_T_EE
+      /franka_state_controller/O_T_EE_vel"/> -->
+  <!-- <arg name="topics"  	    
+  default="/franka_state_controller/joint_states
+      /franka_state_controller/franka_states
+      /franka_gripper/joint_states
+      /front_cam/image_raw/compressed
+      /side_cam/image_raw/compressed
+      /franka_state_controller/O_T_EE
+      /ft_sensor/ft_compensated
+      /ft_sensor/ft_compensated_base"/> -->
+
+  <arg name="topics"  	    
+  default="/franka_state_controller/joint_states
+      /franka_state_controller/franka_states
+      /franka_gripper/joint_states
+      /franka_state_controller/F_ext
+      /franka_state_controller/F_ext_base
+      /franka_state_controller/O_T_EE_vel
+      /franka_state_controller/O_T_EE"/>      
+	<arg name="path_save"        default="/home/asl_team/catkin_ws/src/record_franka_ros/data/data_raw/ours_new"/>	
+  <!-- <arg name="path_save"        default="/home/asl_team/catkin_ws/src/record_franka_ros/data/data_raw_pushBox"/> -->
+	<arg name="file_name" default="recording"/>
+
+  <!-- <include file="$(find record_franka_ros)/launch/startup.launch" pass_all_args="true"/> -->
+  <!-- <include file="$(find record_franka_ros)/launch/start_usb_cam.launch" pass_all_args="true"/> -->
+
+  <!-- <include file="$(find record_franka_ros)/launch/startup.launch" pass_all_args="true"/> -->
+  <!-- <node name="pose_vel_publisher" pkg="record_franka_ros" type="get_ee_pose_vel.py" output="screen" /> -->
+
+  <include file="$(find record_ros)/launch/record_ros.launch">
+    <arg name="path_save"   value="$(arg path_save)"/>
+    <arg name="topic"  	value="$(arg topics)"/>
+    <arg name="file_name"  	value="$(arg file_name)"/>
+  </include>
+
+  <node name="button_ctrl" pkg="record_franka_ros" type="buttons_ctrl.py" output="screen" required="true"/>
+
+  <node name="vel_pob" pkg="record_franka_ros" type="get_ee_pose_vel.py" output="screen" required="true"/>
+</launch>
