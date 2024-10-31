@@ -1,0 +1,31 @@
+digraph pastafarianism {
+ordering=out;
+graph [fontname="times-roman"];
+node [fontname="times-roman"];
+edge [fontname="times-roman"];
+inverse [fillcolor=orange, fontcolor=black, fontsize=9, label="Ⓜ inverse", shape=box, style=filled];
+"Open Clip" [fillcolor=orange, fontcolor=black, fontsize=9, label="Ⓜ Open Clip", shape=box, style=filled];
+inverse -> "Open Clip";
+Up [fillcolor=gray, fontcolor=black, fontsize=9, label=Up, shape=ellipse, style=filled];
+"Open Clip" -> Up;
+"Open Gripper" [fillcolor=gray, fontcolor=black, fontsize=9, label="Open Gripper", shape=ellipse, style=filled];
+"Open Clip" -> "Open Gripper";
+Down [fillcolor=gray, fontcolor=black, fontsize=9, label=Down, shape=ellipse, style=filled];
+"Open Clip" -> Down;
+"Close Gripper" [fillcolor=gray, fontcolor=black, fontsize=9, label="Close Gripper", shape=ellipse, style=filled];
+"Open Clip" -> "Close Gripper";
+Lift [fillcolor=gray, fontcolor=black, fontsize=9, label=Lift, shape=ellipse, style=filled];
+"Open Clip" -> Lift;
+"Open Gripper*" [fillcolor=gray, fontcolor=black, fontsize=9, label="Open Gripper*", shape=ellipse, style=filled];
+"Open Clip" -> "Open Gripper*";
+"Grab Clip" [fillcolor=orange, fontcolor=black, fontsize=9, label="Ⓜ Grab Clip", shape=box, style=filled];
+"Open Clip" -> "Grab Clip";
+"Grab Cable" [fillcolor=gray, fontcolor=black, fontsize=9, label="Grab Cable", shape=ellipse, style=filled];
+"Grab Clip" -> "Grab Cable";
+"Close Gripper*" [fillcolor=gray, fontcolor=black, fontsize=9, label="Close Gripper*", shape=ellipse, style=filled];
+"Grab Clip" -> "Close Gripper*";
+"Open clip" [fillcolor=gray, fontcolor=black, fontsize=9, label="Open clip", shape=ellipse, style=filled];
+"Grab Clip" -> "Open clip";
+"Open Gripper**" [fillcolor=gray, fontcolor=black, fontsize=9, label="Open Gripper**", shape=ellipse, style=filled];
+"Grab Clip" -> "Open Gripper**";
+}
