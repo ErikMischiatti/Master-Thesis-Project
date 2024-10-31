@@ -1,0 +1,12 @@
+# Goal
+float32 slowdown_factor     
+geometry_msgs/Pose goal
+string dhb_file
+
+---
+# Feedback
+float32 percentage
+
+---
+# Result
+bool success  
