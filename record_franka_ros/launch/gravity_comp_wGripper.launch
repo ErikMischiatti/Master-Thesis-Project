@@ -1,5 +1,0 @@
-<?xml version="1.0" ?>
-<launch>
-    
-    <node name="button_ctrl" pkg="record_franka_ros" type="buttons_ctrl.py" output="screen" />
-</launch>
