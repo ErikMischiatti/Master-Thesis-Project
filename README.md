@@ -1,4 +1,4 @@
-# Master Thesis Project - Robotic Manipulation with Learning from Demonstration (Status: Ongoing...)
+# Master Thesis Project -Leveraging Acquired Knowledge and Invariant Representations for Cable Manipulation (Status: Ongoing...)
 
 This repository contains the code and resources for my Master Thesis project developed at the Technical University of Vienna (TUW) as part of the Mechatronic Engineering Master's program at the University of Trento. The project involves the use of a **Franka Emika Panda** robotic arm and an **Intel RealSense D435i** camera to implement a system for robotic manipulation tasks based on **demonstration learning**.
 
