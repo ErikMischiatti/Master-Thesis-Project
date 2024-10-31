@@ -1,0 +1,50 @@
+<launch>
+  <!-- Define the arm_id (panda or fr3 depending on your setup) -->
+  <!-- <arg name="arm_id" default="fr3" />
+  <arg name="use_sim" default="true" /> -->
+
+
+  <!-- Step 1: Launch RealSense camera with the specified parameters -->
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+     <arg name="color_width" value="1280" />
+     <arg name="color_height" value="720" />
+     <arg name="color_fps" value="30" />
+     <arg name="align_depth" value="true" />
+     <arg name="enable_pointcloud" value="true" />
+     <arg name="json_file_path" value="/home/asl_team/catkin_ws/HighAccuracy300mW.json" />
+     <arg name="filters" value="disparity,spatial,temporal,decimation" />
+     <arg name="depth_width" value="848" />
+     <arg name="depth_height" value="480" />
+     <arg name="depth_fps" value="90" />
+  </include>
+
+  <!-- Step 2: Select between real robot and simulation
+  <group if="$(arg use_sim)">
+    <include file="$(find dhb_ros)/launch/PlayDHB.launch">
+      <arg name="robot_ip" value="franka" />
+      <arg name="arm_id" value="$(arg arm_id)" />
+      <arg name="use_sim" value="true" />  
+    </include>
+  </group>
+
+  <group unless="$(arg use_sim)">
+    <include file="$(find dhb_ros)/launch/PlayDHB.launch">
+      <arg name="robot_ip" value="franka" />
+      <arg name="arm_id" value="$(arg arm_id)" />
+      <arg name="use_sim" value="false" />  
+    </include>
+  </group> -->
+
+
+  <!-- Step 3: Launch camera pose -->
+  <include file="$(find dlo_detection)/launch/camera_pose.launch" />
+
+  <!-- Step 4: Launch RQT for graphical interface -->
+  <node pkg="rqt_gui" type="rqt_gui" name="rqt" output="screen" />
+
+  <!-- Step 5: Launch RViz for visualization -->
+  <node pkg="rviz" type="rviz" name="rviz_detection" args="-d $(find dlo_detection)/launch/my_rviz_config.rviz" output="screen" />
+
+  <!-- Step 6: Execute aruco_main.py script -->
+  <node pkg="dlo_detection" type="aruco_main.py" name="aruco_detection" output="screen" launch-prefix="python3" />
+</launch>

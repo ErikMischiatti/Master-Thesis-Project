@@ -1,0 +1,9 @@
+<launch>
+	<!-- Arguments -->
+	<arg name="visualize" default="true" />
+
+    <node pkg="dmp_ros" type="dmp_learn_segmented.py" name="cartesian_dmp_trainer_node" output="screen">
+        <param name="config_path" value="$(find dmp_ros)/config/dmp_learn.yaml"/>
+		<param name="visualize" value="$(arg visualize)" />
+    </node>
+</launch>
