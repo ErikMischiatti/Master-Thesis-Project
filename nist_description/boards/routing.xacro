@@ -1,0 +1,47 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="routing_board">
+    <xacro:arg name="gazebo" default="false" />
+    <xacro:arg name="xyz" default="0 0 0" />
+    <xacro:arg name="rpy" default="0 0 0" />
+
+    <xacro:include filename="$(find nist_description)/boards/components/board.xacro"/>
+    <xacro:include filename="$(find nist_description)/boards/components/ethernet_plug.xacro"/>
+    <xacro:include filename="$(find nist_description)/boards/components/vertical_tube.xacro"/>
+    <xacro:include filename="$(find nist_description)/boards/components/horizontal_tube.xacro"/>
+    <xacro:include filename="$(find nist_description)/boards/components/clip_complex.xacro"/>
+    
+    <xacro:board/>
+
+    # Elements on the board
+
+    # clip_pos1
+    <!-- <xacro:clip_complex row="5" col="6" align="e" connected_to="board_link" id="1"/>  -->
+    # clip_pos2
+    <!-- <xacro:clip_complex row="6" col="7" align="s" connected_to="board_link" id="5"/> -->
+    # clip_pos3
+    <!-- <xacro:clip_complex row="6" col="8" align="e" connected_to="board_link" id="1"/> -->
+    # clip
+    <xacro:clip_complex row="5" col="6" align="w" connected_to="board_link" id="1"/>
+    # Rj45
+    <!-- <xacro:ethernet_plug row="5" col="12" align="e" connected_to="board_link" id="2"/> -->
+    # horizontal_tube
+    <!-- <xacro:horizontal_tube row="7" col="2" align="s" connected_to="board_link" id="3"/> -->
+    # vertical_tube
+    <!-- <xacro:vertical_tube row="8" col="2" align="w" connected_to="board_link" id="4"/> -->
+    
+    
+    
+    <!-- <xacro:clip_complex row="2" col="10" align="n" connected_to="board_link" id="1"/> --> 
+    <!-- <xacro:ethernet_plug row="10" col="1" align="n" connected_to="board_link" id="2"/> --> 
+    <!-- <xacro:vertical_tube row="10" col="10" align="n" connected_to="board_link" id="3"/> -->
+    <!-- <xacro:horizontal_tube row="5" col="6" align="n" connected_to="board_link" id="4"/>  -->
+
+    <xacro:if value="$(arg gazebo)">
+        <link name="world" />
+        <joint name="world_joint" type="fixed">
+            <origin xyz="$(arg xyz)" rpy="$(arg rpy)" />
+            <parent link="world" />
+            <child  link="board_link" />
+        </joint>
+    </xacro:if>
+</robot>

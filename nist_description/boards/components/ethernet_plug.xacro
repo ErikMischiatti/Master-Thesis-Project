@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ethernet_plug">
+  <xacro:macro name="ethernet_plug" params="connected_to:='' row:='0' col:='0' align='h' tube_rpy:='0 ${pi} 0' tube_xyz:='0.0 -0.01 0.085' id:='0'">
+    
+  <xacro:include filename="$(find nist_description)/boards/utils.xacro" />
+
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="EP_${id}_2_board" type="fixed">
+        <parent link="${connected_to}" />
+        <child link="ethernet_housing_${id}" />
+        <!-- <origin xyz="${xyz}" rpy="${rpy}" /> -->
+        <xacro:compute_position row="${row}" col="${col}" aligment="${align}"/>
+      </joint>
+    </xacro:unless>
+
+    <!-- Define the hand_tcp frame -->
+    <link name="ethernet_housing_${id}">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/Ethernet_Housing_scaled2.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.015 0.014"  rpy="0 0 0" />
+        <geometry>
+          <!-- <mesh filename="package://nist_description/models/Ethernet_Housing_scaled2.stl" /> -->
+          <box size="0.02 0.02 0.027"/>
+        </geometry>
+      </collision>
+      <xacro:compute_intertia mass="0.01" w="0.02" h="0.027" d="0.02" xyz="0 -0.015 0.014"/>
+    </link>
+
+  </xacro:macro>
+</robot>

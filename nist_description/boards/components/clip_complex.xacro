@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="clip_complex">
+  <!-- safety_distance: Minimum safety distance in [m] by which the collision volumes are expanded and which is enforced during robot motions -->
+  <xacro:macro name="clip_complex" params="connected_to:='' row:='0' col:='0' align='h' tube_rpy:='0 ${pi} 0' tube_xyz:='0.0 -0.01 0.085' id:='0'">
+    
+  <xacro:include filename="$(find nist_description)/boards/utils.xacro" />
+
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="CC_${id}_2_board" type="fixed">
+        <parent link="${connected_to}" />
+        <child link="clip_complex_base_${id}" />
+        <xacro:compute_position row="${row}" col="${col}" aligment="${align}"/>
+      </joint>
+    </xacro:unless>
+
+    <!-- Define the hand_tcp frame -->
+    <link name="clip_complex_base_${id}">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/clip_ethernet_orizzontale_base_scaled.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://nist_description/models/clip_ethernet_orizzontale_base_scaled.stl" />
+        </geometry>
+      </collision>
+      <xacro:compute_intertia mass="0.01" w="0.02" h="0.015" d="0.03" xyz="0 -0.015 0.0075"/>
+    </link>
+
+    <link name="clip_complex_${id}">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/clip_ethernet_orizzontale_top_scaled.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://nist_description/models/clip_ethernet_orizzontale_top_scaled.stl" />
+        </geometry>
+      </collision>
+      <xacro:compute_intertia mass="0.01" w="0.02" h="0.01" d="0.03" xyz="0.015 0 0.005"/>
+    </link>
+
+    <joint name="BTT_clip_complex_base_${id}" type="revolute">
+      <parent link="clip_complex_base_${id}" />
+      <child link="clip_complex_${id}" />
+      <origin xyz="-0.015 -0.015 0.015" rpy="0 0 0" />
+      <limit effort="1000" velocity="6.28" lower="${-pi}" upper="0" />
+      <axis xyz="0 1 0" />
+    </joint>
+
+  </xacro:macro>
+</robot>

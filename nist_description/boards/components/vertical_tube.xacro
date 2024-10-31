@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="vertical_tube">
+  <!-- safety_distance: Minimum safety distance in [m] by which the collision volumes are expanded and which is enforced during robot motions -->
+  <xacro:macro name="vertical_tube" params="connected_to:='' row:='0' col:='0' align='h' tube_rpy:='0 ${pi} 0' tube_xyz:='0.0 0.02 0.085' id:='0'">
+    
+  <xacro:include filename="$(find nist_description)/boards/utils.xacro" />
+
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="VT_${id}_2_board" type="fixed">
+        <parent link="${connected_to}" />
+        <child link="vertical_tube_base_${id}" />
+        <xacro:compute_position row="${row}" col="${col}" aligment="${align}"/>
+      </joint>
+    </xacro:unless>
+
+    <!-- Define the hand_tcp frame -->
+    <link name="vertical_tube_base_${id}">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/T_bracket_scaled.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://nist_description/models/T_bracket_scaled.stl" />
+        </geometry>
+      </collision>
+      <xacro:compute_intertia mass="0.1" w="0.02" h="0.1" d="0.04" xyz="0 0.03 0.05"/>
+    </link>
+
+    <link name="vertical_tube_${id}">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/holder_verticale_ethernet_scaled.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://nist_description/models/holder_verticale_ethernet_scaled.stl" />
+        </geometry>
+      </collision>
+      <!-- <xacro:compute_intertia mass="0.01" w="0.02" h="0.02" d="0.03" xyz="0 0 0.1"/> -->
+    </link>
+
+    <joint name="BTT_vertical_tube_base_${id}" type="fixed">
+      <parent link="vertical_tube_base_${id}" />
+      <child link="vertical_tube_${id}" />
+      <origin xyz="${tube_xyz}" rpy="${tube_rpy}" />
+    </joint>
+
+  </xacro:macro>
+</robot>

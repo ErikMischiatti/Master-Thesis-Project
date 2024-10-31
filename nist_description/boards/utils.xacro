@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="compute_position" params="row col aligment">
+        <xacro:if value="${aligment == 's'}">
+            <origin xyz="${0.02 + col * 0.03 - 0.2} ${0.02 + row * 0.03 - 0.2} 0.041" rpy="0 0 0" />
+        </xacro:if>
+        <xacro:if value="${aligment == 'e'}">
+            <origin xyz="${0.02 + col * 0.03 - 0.2} ${0.02 + row * 0.03 - 0.2} 0.041" rpy="0 0 ${pi/2}" />
+        </xacro:if>
+        <xacro:if value="${aligment == 'n'}">
+            <origin xyz="${0.02 + col * 0.03 - 0.2} ${0.02 + row * 0.03 - 0.2} 0.041" rpy="0 0 ${pi}" />
+        </xacro:if>
+        <xacro:if value="${aligment == 'w'}">
+            <origin xyz="${0.02 + col * 0.03 - 0.2} ${0.02 + row * 0.03 - 0.2} 0.041" rpy="0 0 ${-pi/2}" />
+        </xacro:if>
+    </xacro:macro>
+
+    <xacro:macro name="compute_intertia" params="mass w h d xyz:='0 0 0' rpy:='0 0 0'">
+        <inertial>
+            <origin rpy="${rpy}" xyz="${xyz}" />
+            <mass value="${mass}" />
+            <inertia ixx="${mass*(w*w+h*h)/12}" ixy="0" ixz="0" iyy="${mass*(d*d+h*h)/12}" iyz="0" izz="${mass*(w*w+d*d)/12}" />
+        </inertial>
+    </xacro:macro>
+</robot>

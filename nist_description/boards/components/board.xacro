@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="board">
+  <xacro:include filename="$(find nist_description)/boards/utils.xacro" />
+
+  <!-- safety_distance: Minimum safety distance in [m] by which the collision volumes are expanded and which is enforced during robot motions -->
+  <xacro:macro name="board">
+    <!-- Define the hand_tcp frame -->
+    <link name="board_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/board.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.021" rpy="0 0 0" />
+        <geometry>
+          <box size="0.41 0.41 0.041"/>
+        </geometry>
+      </collision>
+      <xacro:compute_intertia mass="1.5" w="0.4" h="0.04" d="0.4" xyz="0 0 0.02"/>
+    </link>
+
+  </xacro:macro>
+</robot>

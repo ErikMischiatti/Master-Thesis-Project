@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="horizontal_tube">
+  <!-- safety_distance: Minimum safety distance in [m] by which the collision volumes are expanded and which is enforced during robot motions -->
+  <xacro:macro name="horizontal_tube" params="connected_to:='' row:='0' col:='0' align='h' tube_rpy:='0 ${pi} 0' tube_xyz:='0.0 -0.01 0.085' id:='0'">
+    
+  <xacro:include filename="$(find nist_description)/boards/utils.xacro" />
+
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="HT_${id}_2_board" type="fixed">
+        <parent link="${connected_to}" />
+        <child link="horizontal_tube_${id}" />
+        <xacro:compute_position row="${row}" col="${col}" aligment="${align}"/>
+      </joint>
+    </xacro:unless>
+
+    <!-- Define the hand_tcp frame -->
+    <link name="horizontal_tube_${id}">
+      <visual>
+        <geometry>
+          <mesh filename="package://nist_description/models/holder_orizzontale_ethernet_scaled.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://nist_description/models/holder_orizzontale_ethernet_scaled.stl" />
+        </geometry>
+      </collision>
+      <xacro:compute_intertia mass="0.01" w="0.04" h="0.035" d="0.03" xyz="0 0.016 0.0175"/>
+    </link>
+
+      <!-- <joint name="horizontal_tube_${id}" type="fixed">
+        <parent link="map" />
+        <child link="horizontal_tube_${id}" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </joint> -->
+
+  </xacro:macro>
+</robot>
