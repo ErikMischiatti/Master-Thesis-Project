@@ -1,0 +1,9 @@
+joint_pose:
+  $(arg arm_id)_joint1: 0.009680985027232454
+  $(arg arm_id)_joint2: 0.5789417876721074
+  $(arg arm_id)_joint3: -0.8324819335457487
+  $(arg arm_id)_joint4:  -1.6272349449456793
+  $(arg arm_id)_joint5: 0.45557750623810495
+  $(arg arm_id)_joint6: 2.041888101341021
+  $(arg arm_id)_joint7: -0.1377449675473827
+
