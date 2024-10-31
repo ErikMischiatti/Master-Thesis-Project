@@ -1,0 +1,17 @@
+- git:
+    local-name: franka_ros
+    uri: https://github.com/frankaemika/franka_ros
+
+- git:
+    local-name: easy_kinesthetic_recording
+    uri: https://github.com/nbfigueroa/easy-kinesthetic-recording
+
+- git:
+    local-name: record_ros
+    uri: https://github.com/nbfigueroa/record_ros.git
+    version: master
+    
+- git:
+    local-name: rosbag_to_mat
+    uri: https://github.com/nbfigueroa/rosbag_to_mat.git
+    version: main
