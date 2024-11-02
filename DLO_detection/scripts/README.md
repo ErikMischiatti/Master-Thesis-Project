@@ -12,9 +12,6 @@ This module includes the main script `aruco_main.py` for detecting ArUco markers
   - **Smoothing and Transformations**: Applies exponential smoothing to rotation angles and manages transformations between camera and robot coordinate frames.
   - **ROS Publishing**: Publishes the detected pose and orientation information as ROS messages on specified topics for integration with other system components.
 
-- **Usage**: 
-  - Ensure that all dependencies, including ROS, OpenCV, `pyrealsense2`, and `pytransform3d`, are installed.
-  - Run the script within a ROS environment. The node subscribes to image topics and publishes the processed pose and orientation data.
 
 ### 2. `params_v2.json`
 - **Description**: This JSON file contains the HSV (Hue, Saturation, Value) parameters for the connector and cable segmentation. These values are used to apply color-based filters to the camera image, aiding in the identification of specific regions associated with the connector and cable.
