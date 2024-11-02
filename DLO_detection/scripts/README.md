@@ -23,3 +23,25 @@ This module includes the main script `aruco_main.py` for detecting ArUco markers
     "LH_Cable": 0, "LS_Cable": 160, "LV_Cable": 161,
     "UH_Cable": 39, "US_Cable": 255, "UV_Cable": 255
   }
+- **Parameters**:
+In the `params_v2.json` file, the following parameters define the HSV (Hue, Saturation, Value) thresholds used for segmenting specific regions in the camera image:
+
+- **Connector Parameters**:
+  - **`LH_Connector`**, **`LS_Connector`**, **`LV_Connector`**: Lower thresholds for the hue, saturation, and value components, respectively. These values set the minimum color range for detecting the connector in the image.
+  - **`UH_Connector`**, **`US_Connector`**, **`UV_Connector`**: Upper thresholds for the hue, saturation, and value components, respectively. These values set the maximum color range for the connector.
+
+- **Cable Parameters**:
+  - **`LH_Cable`**, **`LS_Cable`**, **`LV_Cable`**: Lower thresholds for hue, saturation, and value for identifying the cable.
+  -
+
+
+
+
+
+
+
+
+
+
+
+
