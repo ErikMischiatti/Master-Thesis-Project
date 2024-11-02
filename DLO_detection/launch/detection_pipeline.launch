@@ -18,33 +18,15 @@
      <arg name="depth_fps" value="90" />
   </include>
 
-  <!-- Step 2: Select between real robot and simulation
-  <group if="$(arg use_sim)">
-    <include file="$(find dhb_ros)/launch/PlayDHB.launch">
-      <arg name="robot_ip" value="franka" />
-      <arg name="arm_id" value="$(arg arm_id)" />
-      <arg name="use_sim" value="true" />  
-    </include>
-  </group>
-
-  <group unless="$(arg use_sim)">
-    <include file="$(find dhb_ros)/launch/PlayDHB.launch">
-      <arg name="robot_ip" value="franka" />
-      <arg name="arm_id" value="$(arg arm_id)" />
-      <arg name="use_sim" value="false" />  
-    </include>
-  </group> -->
-
-
-  <!-- Step 3: Launch camera pose -->
+  <!-- Step 2: Launch camera pose -->
   <include file="$(find dlo_detection)/launch/camera_pose.launch" />
 
-  <!-- Step 4: Launch RQT for graphical interface -->
+  <!-- Step 3: Launch RQT for graphical interface -->
   <node pkg="rqt_gui" type="rqt_gui" name="rqt" output="screen" />
 
-  <!-- Step 5: Launch RViz for visualization -->
+  <!-- Step 4: Launch RViz for visualization -->
   <node pkg="rviz" type="rviz" name="rviz_detection" args="-d $(find dlo_detection)/launch/my_rviz_config.rviz" output="screen" />
 
-  <!-- Step 6: Execute aruco_main.py script -->
+  <!-- Step 5: Execute aruco_main.py script -->
   <node pkg="dlo_detection" type="aruco_main.py" name="aruco_detection" output="screen" launch-prefix="python3" />
 </launch>
