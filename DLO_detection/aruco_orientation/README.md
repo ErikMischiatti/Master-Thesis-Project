@@ -21,21 +21,3 @@ Focuses on the computer vision aspects of the project, possibly containing funct
 
 ### `hsv_tuner.py`
 This script provides a graphical interface with trackbars to adjust HSV values for detecting connectors and cables using ArUco markers. It allows for real-time tuning of parameters, with the option to save them to a JSON file.
-
-## Usage
-
-1. **Configure Parameters**: Use `aruco_config.py` to set initial parameters for marker detection.
-2. **Run Detection**: Use `aruco_detection_filtered.py` to detect ArUco markers and calculate rotation angles with smoothing.
-3. **Integrate Camera**: If using an Intel RealSense camera, initialize it with `aruco_realsense.py`.
-4. **Tune Parameters**: Use `aruco_trackbars.py` and `hsv_tuner.py` for real-time adjustment of HSV parameters. Press `s` to save any changes to the parameters file or `q` to quit.
-5. **Visualize**: Use `aruco_vision.py` to draw and visualize 3D axes and angles between objects.
-
-## Requirements
-
-- **Libraries**: Ensure that `opencv-python`, `numpy`, `pyrealsense2`, and `rospy` (for ROS integration) are installed.
-- **Hardware**: An Intel RealSense camera is required for scripts using 3D spatial data.
-
-## Notes
-
-- Ensure the parameters file path is correct in each script, especially in `hsv_tuner.py`.
-- Adjust smoothing and threshold parameters based on your specific environment and camera setup for optimal performance.
