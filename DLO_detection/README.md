@@ -36,23 +36,9 @@ The `DLO_detection` ROS package is developed for detecting and locating ArUco ma
 ## Setup
 
 ### Prerequisites
-1. **Python Libraries**: Install the Python dependencies with:
-   ```bash
-   pip install -r requirements.txt
-2 **ROS**: Ensure that ROS is properly configured and that the ROS dependencies are met.
-
-### RealSense Camera Setup
-Connect the Intel RealSense camera and verify that the image topics are available. The launch files in `launch` help configure the camera and initialize the detection pipeline.
 
 ## Execution
-1. **Starting the Detection Pipeline**: Use the main launch file to start the pipeline:
-   ```bash
-   roslaunch dlo_detection detection_pipeline.launch
-2. **HSV Parameter Tuning**: If needed, use `aruco_trackbars.py` or `hsv_tuner.py` to adjust the HSV parameters and optimize connector and cable detection. These scripts provide a graphical interface with trackbars to fine-tune the HSV values, making it easier to isolate the connector and cable in the image based on color.
 
 ## Notes
-- **Parameter Customization**: The `params_v2.json` file can be modified to adjust HSV thresholds according to lighting conditions and environment. These values define the color ranges used in segmentation for the connector and cable, and adjustments may be necessary for different setups.
-- **License and Maintainers**: Ensure to update the `package.xml` file with appropriate license and maintainer information. Adding correct licensing information and maintainer contact details helps with proper usage and support.
-- **Visualization in RViz**: Use the configuration files in `launch` to visualize detected ArUco markers and poses in RViz. This allows you to verify marker positions, connector and cable segmentation, and camera alignment within a 3D visualization environment.
 
 
