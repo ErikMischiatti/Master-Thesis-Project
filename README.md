@@ -1,6 +1,6 @@
 # Master Thesis Project -Leveraging Acquired Knowledge and Invariant Representations for Cable Manipulation (Status: Ongoing...)
 
-⚠️ This repository is currently under development — code and documentation will be uploaded progressively in the coming weeks.
+> ⚠️ This repository is currently under development — code and documentation will be uploaded progressively in the coming weeks.
 
 ...
 
